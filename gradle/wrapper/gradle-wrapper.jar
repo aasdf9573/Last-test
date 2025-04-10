@@ -1,0 +1,2 @@
+- name: Fix permissions for gradle-wrapper.jar
+  run: chmod +x gradle/wrapper/gradle-wrapper.jar
