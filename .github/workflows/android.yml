@@ -1,4 +1,4 @@
-name: Android CI
+name: Android CI with Discord Upload
 
 on:
   push:
@@ -27,8 +27,8 @@ jobs:
     - name: 디버그 APK 빌드
       run: ./gradlew assembleDebug
 
-    - name: 빌드 결과 업로드
-      uses: actions/upload-artifact@v3
-      with:
-        name: LimbusTRPG-APK
-        path: app/build/outputs/apk/debug/app-debug.apk
+    - name: Discord로 APK 업로드
+      run: |
+        curl -X POST "https://discordapp.com/api/webhooks/1359871270597955726/BvQM8jibnBKQ6F5fCxVi_JA33kwDmGxhqi0WcNLzZ-TXa094pu1p57oN8Os1augHrvsd" \
+        -F "payload_json={\"content\": \"✅ 새로운 LimbusTRPG APK가 빌드되었습니다!\"}" \
+        -F "file=@app/build/outputs/apk/debug/app-debug.apk"
